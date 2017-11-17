@@ -17,8 +17,8 @@ use com.ibm.streamsx.topology.topic::Subscribe;
 
   @param messageHub Name of application configuration containing
      Message Hub credentials.
-  @param topicPattern Topic pattern to match. All topics that match
-     the pattern will result in messages sent to the `producerTopic`
+  @param topicFilter Topic filter to match. All topics that match
+     `topicFilter` will result in messages sent to the `producerTopic`
      on Message Hub.
   @param producerTopic Message Hub topic the messages will be submitted to.
 */
@@ -26,14 +26,14 @@ public composite JSONToMessageHubService {
 
   param
     expression<rstring> $messageHub : getSubmissionTimeValue("messageHub", "messagehub");
-    expression<rstring> $topicPattern : getSubmissionTimeValue("topicPattern");
+    expression<rstring> $topicFilter : getSubmissionTimeValue("topicFilter");
     expression<rstring> $producerTopic : getSubmissionTimeValue("producerTopic");
 
   graph
 
     stream<Json> Stream = Subscribe() {
       param
-        topic: $topicPattern;
+        topic: $topicFilter;
         streamType: Json;
     }
 	
