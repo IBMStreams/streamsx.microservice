@@ -1,0 +1,18 @@
+/*
+# Licensed Materials - Property of IBM
+# Copyright IBM Corp. 2017
+*/
+
+/**
+   Streaming microservices supporting conversions
+   to and from published streams.
+
+   Conversions may be added to support:
+
+   * Conversion from a published stream to/from a Message Hub (Kakfa) queue.
+   * Conversion from an SPL/structured published stream to/from a JSON stream.
+   * Conversion from one version of a published stream to another.
+
+*/
+
+namespace com.ibm.streamsx.microservice.convert.services;
