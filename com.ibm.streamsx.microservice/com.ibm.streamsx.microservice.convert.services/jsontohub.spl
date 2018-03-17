@@ -1,0 +1,49 @@
+/*
+# Licensed Materials - Property of IBM
+# Copyright IBM Corp. 2017
+*/
+
+namespace com.ibm.streamsx.microservice.convert.services;
+
+use com.ibm.streamsx.messagehub::MessageHubProducer;
+use com.ibm.streamsx.json::Json;
+use com.ibm.streamsx.topology.topic::Subscribe;
+
+/**
+  Convert JSON published topic streams to a message hub topic.
+
+  Streaming microservice that converts published stream topics to a messages
+  on a Message Hub topic. For each tuple published a message is submitted.
+
+  @param messageHub Name of application configuration containing
+     Message Hub credentials.
+  @param topicFilter Topic filter to match. All topics that match
+     `topicFilter` will result in messages sent to the `producerTopic`
+     on Message Hub.
+  @param producerTopic Message Hub topic the messages will be submitted to.
+*/
+public composite JSONToMessageHubService {
+
+  param
+    expression<rstring> $messageHub : getSubmissionTimeValue("messageHub", "messagehub");
+    expression<rstring> $topicFilter : getSubmissionTimeValue("topicFilter");
+    expression<rstring> $producerTopic : getSubmissionTimeValue("producerTopic");
+
+  graph
+
+    stream<Json> Stream = Subscribe() {
+      param
+        topic: $topicFilter;
+        streamType: Json;
+    }
+	
+    () as Submitter = MessageHubProducer(Stream) {
+      param
+        messageAttribute: jsonString;
+        topic: $producerTopic;
+        appConfigName: $messageHub;
+    } 
+
+  config
+    placement: partitionColocation("SinglePE");
+}
