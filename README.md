@@ -1,7 +1,7 @@
 # streamsx.microservice
 Provide documentation, utilities, examples for Streams microservices
 
-Streamsdev article: https://developer.ibm.com/streamsdev/2016/09/02/analytics-microservice-architecture-with-ibm-streams/
+Analytics Microservice Architecture with IBM Streams: https://community.ibm.com/community/user/cloudpakfordata/viewdocument/analytics-microservice-architecture?CommunityKey=c0c16ff2-10ef-4b50-ae4c-57d769937235&tab=librarydocuments
 
 This repository contains the following:
 

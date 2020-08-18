@@ -6,7 +6,7 @@ A streaming microservice (henceforth referred to as simply a *microservice*) is 
 Publish-subscribe thus works between microservices (jobs) running within the same instance. The instance can be the one provided by
 Streaming Analytics service on IBM Cloud or an on-prem deployment of IBM Streams.
 
-See also: https://developer.ibm.com/streamsdev/2016/09/02/analytics-microservice-architecture-with-ibm-streams/
+See also: https://community.ibm.com/community/user/cloudpakfordata/viewdocument/analytics-microservice-architecture?CommunityKey=c0c16ff2-10ef-4b50-ae4c-57d769937235&tab=librarydocuments
 
 ### Dyanamic and independent
 The publish-subscribe model allows the publisher and subscriber to be independent. Any number of publishers and subscribers can exist and be unware of any implementation details of any microservice. No pre-registration is needed, if a subscriber's stream subscription matches a published stream then the connection is made and subscriber microservice starts consuming data from the publishing microservice.
